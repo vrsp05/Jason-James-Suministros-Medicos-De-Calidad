@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import ContactForm from './components/ContactForm';
+import Navbar from './Navbar';
+import ContactForm from './ContactForm';
 
 // Mock data for initial development
 const MOCK_PRODUCTS = [
