@@ -76,9 +76,9 @@ export default function ProductTable({ data }) {
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th key={header.id} className="px-6 py-4 text-xs font-black uppercase tracking-widest">
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                  </th>
+                  <th key={header.id} className="px-6 py-5 text-sm font-black uppercase tracking-tighter text-blue-900 bg-blue-50/50">
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+                    </th>
                 ))}
               </tr>
             ))}
@@ -97,43 +97,46 @@ export default function ProductTable({ data }) {
         </table>
       </div>
 
-      {/* Updated Pagination Controls */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-100">
-            <div className="flex items-center gap-2">
+      {/* High-Visibility Pagination Controls */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 mt-4 border-t border-gray-100">
+            <div className="flex items-center gap-3">
                 <button
-                    onClick={() => table.setPageIndex(0)}
-                    disabled={!table.getCanPreviousPage()}
-                    className="px-3 py-2 border border-gray-200 rounded-lg disabled:opacity-30 bg-white text-blue-900 font-bold hover:bg-gray-50 transition-colors shadow-sm"
-                    >
-                    {"<<"}
+                onClick={() => table.setPageIndex(0)}
+                disabled={!table.getCanPreviousPage()}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                >
+                {"<<"}
                 </button>
                 <button
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                    className="px-4 py-2 border border-gray-200 rounded-lg disabled:opacity-30 bg-white text-blue-900 font-bold hover:bg-gray-50 transition-colors shadow-sm"
-                    >
-                    Anterior
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                >
+                Anterior
                 </button>
                 <button
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                    className="px-4 py-2 border border-gray-200 rounded-lg disabled:opacity-30 bg-white text-blue-900 font-bold hover:bg-gray-50 transition-colors shadow-sm"
-                    >
-                    Siguiente
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                >
+                Siguiente
                 </button>
                 <button
-                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                    disabled={!table.getCanNextPage()}
-                    className="px-3 py-2 border border-gray-200 rounded-lg disabled:opacity-30 bg-white text-blue-900 font-bold hover:bg-gray-50 transition-colors shadow-sm"
-                    >
-                    {">>"}
+                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                disabled={!table.getCanNextPage()}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                >
+                {">>"}
                 </button>
             </div>
-        
-            <div className="text-sm font-semibold text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
-                Página <span className="text-blue-700">{table.getState().pagination.pageIndex + 1}</span> de <span className="text-blue-700">{table.getPageCount()}</span>
+            
+            <div className="flex items-center gap-2 bg-blue-50 px-6 py-3 rounded-2xl border border-blue-100 shadow-sm">
+                <span className="text-sm font-medium text-blue-900">Página</span>
+                <span className="text-lg font-black text-blue-700">{table.getState().pagination.pageIndex + 1}</span>
+                <span className="text-sm font-medium text-blue-900">de</span>
+                <span className="text-lg font-black text-blue-700">{table.getPageCount()}</span>
             </div>
-        </div>
+            </div>
     </div>
   );
 }

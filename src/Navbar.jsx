@@ -1,43 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-/**
- * Custom Hook: useIntersectionObserver
- * Watches when sections cross the 'threshold' of the viewport.
- */
 const useIntersectionObserver = (sectionIds) => {
   const [activeSection, setActiveSection] = useState('inicio');
   const observerRef = useRef(null);
 
   useEffect(() => {
-    // If the observer already exists, don't recreate it.
     if (observerRef.current) observerRef.current.disconnect();
 
-    // The logic to run when a section is intersected.
     const callback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
-          // When > 40% of the section is visible, make it active.
           setActiveSection(entry.target.id);
         }
       });
     };
 
-    // Configuration for the intersection observer.
     const options = {
-      root: null, // Watch the viewport
-      threshold: 0.5, // 50% must be visible to trigger
-      rootMargin: '-80px 0px -20% 0px' // Adjust for sticky navbar height (80px)
+      root: null,
+      threshold: 0.5,
+      rootMargin: '-80px 0px -20% 0px'
     };
 
     observerRef.current = new IntersectionObserver(callback, options);
 
-    // Tell the observer to watch each section by ID.
     sectionIds.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observerRef.current.observe(element);
     });
 
-    // Cleanup function when component unmounts.
     return () => {
       if (observerRef.current) observerRef.current.disconnect();
     };
@@ -47,13 +37,10 @@ const useIntersectionObserver = (sectionIds) => {
 };
 
 export default function Navbar() {
-  // 1. Define the sections we want to watch.
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const sectionIds = ['inicio', 'negocio', 'productos', 'contacto'];
-
-  // 2. Use the hook to find out which section is active.
   const activeSection = useIntersectionObserver(sectionIds);
 
-  // 3. Define our nav links in an array for easy mapping.
   const navLinks = [
     { label: 'Inicio', id: 'inicio' },
     { label: 'Empresa', id: 'negocio' },
@@ -62,52 +49,83 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          
           {/* Brand Name */}
-          <div className="text-xl font-bold text-blue-900 tracking-tight">
-            Jason James <span className="text-blue-600 font-medium">Suministros Médicos</span>
+          <div className="flex-shrink-0 text-lg md:text-xl font-bold text-blue-900 tracking-tight">
+            Jason James <span className="text-blue-600 font-medium">Médicos</span>
           </div>
 
-          {/* Navigation Items (Links + Button) */}
-          <div className="flex items-center space-x-10">
-            
-            {/* Nav Links mapping */}
-            <ul className="hidden md:flex space-x-8 text-sm font-semibold text-blue-950">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-10">
+            <ul className="flex space-x-8 text-sm font-semibold text-blue-900">
               {navLinks.map((link) => (
                 <li key={link.id}>
                   <a 
                     href={`#${link.id}`} 
                     className={`transition-all duration-300 relative group 
-                      ${activeSection === link.id 
-                        ? 'text-blue-600' // State 1: Active Color
-                        : 'hover:text-blue-600 text-blue-950/80' // State 2: Default Color
-                      }`}
+                      ${activeSection === link.id ? 'text-blue-600' : 'text-blue-950/80 hover:text-blue-600'}`}
                   >
                     {link.label}
-                    {/* The underline element (only visible on active section) */}
-                    <span className={`absolute -bottom-1.5 left-0 h-0.5 bg-blue-600 transition-all duration-300
-                      ${activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'}
-                    `}></span>
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300
+                      ${activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                   </a>
                 </li>
               ))}
             </ul>
-
-            {/* DYNAMIC Button: "Cotizar" changes when on Contacto section */}
             <a 
               href="#contacto" 
-              className={`border-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-500 shadow-sm
-                ${activeSection === 'contacto'
-                  ? 'bg-blue-900 text-white border-blue-900 hover:bg-blue-950' // State A: Active/Contact Page
-                  : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50' // State B: Primary CTA
-                }`}
+              className={`border-2 px-5 py-2 rounded-full text-sm font-bold transition-all duration-500
+                ${activeSection === 'contacto' ? 'bg-blue-900 text-white border-blue-900' : 'bg-white text-blue-900 border-blue-900 hover:bg-blue-50'}`}
             >
               Cotizar
             </a>
           </div>
+
+          {/* --- UPDATED Mobile Menu Button --- */}
+          <div className="md:hidden flex items-center">
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md bg-blue-900 text-white border border-blue-900 outline-none"
+            >
+              {/* Explicitly defined Hamburger/X Icon */}
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+
+        {/* --- UPDATED Mobile Menu Dropdown --- */}
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-white border-t border-gray-100`}>
+          <div className="px-4 pt-2 pb-8 space-y-1 shadow-inner">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-4 py-4 text-base font-bold rounded-xl ${activeSection === link.id ? 'text-blue-600 bg-blue-50' : 'text-gray-700'}`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="pt-4 px-2">
+              <a
+                href="#contacto"
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full text-center bg-blue-900 text-white !text-white px-5 py-4 rounded-2xl font-black shadow-lg shadow-blue-900/20 uppercase tracking-widest text-xs"
+              >
+                Cotizar Ahora
+              </a>
+            </div>
+          </div>
+        </div>
     </nav>
   );
 }

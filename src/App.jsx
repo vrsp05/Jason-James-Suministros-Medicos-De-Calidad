@@ -24,13 +24,13 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900">
+    <div className="w-full min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
       <Navbar />
 
       {/* --- Section 1: Inicio / Sobre Nosotros --- */}
-      <section id="inicio" className="relative min-h-[80vh] flex flex-col justify-center py-24 px-6 overflow-hidden">
+      <section id="inicio" className="w-full relative min-h-[80vh] flex flex-col justify-center py-24 px-6">
         {/* Background Decoration */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10"></div>
         
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-black text-blue-900 mb-6 tracking-tight">
@@ -50,8 +50,8 @@ function App() {
       </section>
 
       {/* --- Section 2: Empresa (Negocio) --- */}
-      <section id="negocio" className="min-h-[80vh] flex flex-col justify-center py-24 bg-blue-900 text-white px-6">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <section id="negocio" className="w-full min-h-[80vh] flex flex-col justify-center py-24 bg-blue-900 text-white px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl font-bold mb-6 tracking-tight">Nuestra Empresa</h2>
             <p className="text-blue-100 text-lg leading-relaxed mb-8">
@@ -77,8 +77,8 @@ function App() {
       </section>
 
       {/* --- Section 3: Productos (Catálogo) --- */}
-      <section id="productos" className="min-h-screen py-24 bg-white px-6">
-        <div className="w-full max-w-[95%] mx-auto">
+      <section id="productos" className="w-full py-24 bg-white px-4 md:px-12">
+        <div className="w-full">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-gray-100 pb-8">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 tracking-tight">Catálogo de Productos</h2>
@@ -90,23 +90,18 @@ function App() {
           {loading ? (
             <div className="text-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
-              <p className="mt-4 text-gray-500 font-medium tracking-wide">Sincronizando con base de datos...</p>
+              <p className="mt-4 text-gray-500 font-medium tracking-wide">Sincronizando catálogo...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {loading ? (
-                <div className="text-center py-20">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
-                  <p className="mt-4 text-gray-500 font-medium tracking-wide">Sincronizando catálogo...</p>
-                </div>) : (<ProductTable data={products} />)
-              }
+            <div className="w-full overflow-hidden">
+               <ProductTable data={products} />
             </div>
           )}
         </div>
       </section>
 
       {/* --- Section 4: Contacto (Formulario) --- */}
-      <section id="contacto" className="min-h-screen py-24 bg-gray-100 px-6 flex flex-col justify-center">
+      <section id="contacto" className="w-full min-h-screen py-24 bg-gray-100 px-6 flex flex-col justify-center">
         <div className="max-w-4xl mx-auto w-full">
           <div className="bg-white p-12 md:p-16 rounded-[3rem] shadow-2xl border-t-[12px] border-blue-900 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-0 opacity-50"></div>
@@ -122,12 +117,22 @@ function App() {
         </div>
       </section>
 
-      <footer className="py-16 text-center bg-white">
+      <footer className="w-full py-12 md:py-16 text-center bg-white border-t border-gray-100">
         <div className="max-w-5xl mx-auto px-6">
           <p className="font-black text-blue-900 uppercase tracking-[0.3em] text-xs mb-2">Jason James</p>
-          <p className="text-gray-400 text-sm font-medium italic">Suministros Médicos Especializados para México</p>
-          <div className="h-px w-20 bg-gray-100 mx-auto my-8"></div>
-          <p className="text-gray-400 text-xs">&copy; {new Date().getFullYear()} | Insumos de Grado Hospitalario</p>
+          <p className="text-gray-400 text-sm font-medium italic mb-8">Suministros Médicos Especializados para México</p>
+          
+          <div className="h-px w-20 bg-gray-100 mx-auto my-6"></div>
+          
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 mb-6">
+            <p className="text-gray-600 text-sm font-medium">Made by <span className="font-bold text-gray-900">Victor Santana</span></p>
+            <span className="hidden md:inline text-gray-300">•</span>
+            <a href="https://github.com/vrsp05" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-semibold text-sm transition-colors">
+              GitHub
+            </a>
+          </div>
+          
+          <p className="text-gray-400 text-xs">&copy; {new Date().getFullYear()} Jason James & Victor Santana. All rights reserved.</p>
         </div>
       </footer>
     </div>
