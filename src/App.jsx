@@ -138,8 +138,11 @@ function App() {
             
             <div className="relative z-10">
               <h2 className="text-4xl font-bold text-center text-gray-900 mb-4 tracking-tight">Realizar un Pedido</h2>
-              <p className="text-center text-gray-500 mb-12 max-w-md mx-auto leading-relaxed font-medium">
-                Envíenos los detalles de su requerimiento y nos pondremos en contacto con usted en menos de 24 horas.
+              <p className="text-center text-gray-500 mb-4 max-w-md mx-auto leading-relaxed font-medium">
+                Envíenos los detalles de su requerimiento y nos pondremos en contacto con usted.
+              </p>
+              <p className="text-center text-blue-600 mb-12 max-w-md mx-auto leading-relaxed font-bold">
+                ⏱️ Respuesta en 1 a 3 días hábiles
               </p>
               <ContactForm />
             </div>

@@ -58,7 +58,7 @@ export default function ContactForm() {
       const data = await response.json();
 
       if (data.success) {
-        setResult("¡Mensaje enviado con éxito!");
+        setResult("¡Mensaje enviado con éxito! Nos pondremos en contacto dentro de 1 a 3 días hábiles.");
         setFormData({ name: "", subject: "", email: "", message: "" });
         setAgreedToTerms(false);
         setShowModal(false);
