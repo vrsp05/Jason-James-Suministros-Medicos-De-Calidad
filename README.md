@@ -41,6 +41,13 @@ The project integrates external services for critical functionalities:
 
 All rights reserved © 2026 Medical Supplies of Confidence.
 
-## Credits
+## Contact & Credits
 
-Developed by [Victor Santana](https://github.com/vrsp05)
+**Website Created For:**  
+Dr. Jason James  
+
+**Developed By:**  
+[Victor Santana](https://github.com/vrsp05)
+
+**With Assistance From:**  
+GitHub Copilot (Claude Sonnet 4.5)  
