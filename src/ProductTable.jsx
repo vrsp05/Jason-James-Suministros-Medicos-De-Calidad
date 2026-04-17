@@ -113,28 +113,28 @@ export default function ProductTable({ data }) {
                 <button
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                className="px-4 py-2 bg-blue-600 dark:bg-blue-600 text-white dark:text-white rounded-lg font-bold disabled:bg-slate-700 dark:disabled:bg-slate-700 disabled:text-white dark:disabled:text-white hover:bg-blue-700 dark:hover:bg-blue-700 transition-all shadow-md"
                 >
                 {"<<"}
                 </button>
                 <button
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                className="px-6 py-2 bg-blue-600 dark:bg-blue-600 text-white dark:text-white rounded-lg font-bold disabled:bg-slate-700 dark:disabled:bg-slate-700 disabled:text-white dark:disabled:text-white hover:bg-blue-700 dark:hover:bg-blue-700 transition-all shadow-md"
                 >
                 Anterior
                 </button>
                 <button
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                className="px-6 py-2 bg-blue-600 dark:bg-blue-600 text-white dark:text-white rounded-lg font-bold disabled:bg-slate-700 dark:disabled:bg-slate-700 disabled:text-white dark:disabled:text-white hover:bg-blue-700 dark:hover:bg-blue-700 transition-all shadow-md"
                 >
                 Siguiente
                 </button>
                 <button
                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                 disabled={!table.getCanNextPage()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold disabled:bg-gray-200 disabled:text-gray-400 hover:bg-blue-700 transition-all shadow-md"
+                className="px-4 py-2 bg-blue-600 dark:bg-blue-600 text-white dark:text-white rounded-lg font-bold disabled:bg-slate-700 dark:disabled:bg-slate-700 disabled:text-white dark:disabled:text-white hover:bg-blue-700 dark:hover:bg-blue-700 transition-all shadow-md"
                 >
                 {">>"}
                 </button>

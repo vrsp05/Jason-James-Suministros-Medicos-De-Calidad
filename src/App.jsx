@@ -60,7 +60,7 @@ function App() {
               <p className="text-lg text-gray-700 font-semibold mb-3">Estamos orgullosos de ofrecer:</p>
               <ul className="space-y-3 text-base text-gray-700 font-medium mb-8">
                 <li>✓ <span className="font-bold text-blue-900">Suministros educativos y de demostración</span> de alta calidad para instituciones médicas</li>
-                <li>✓ Productos <span className="font-bold text-blue-900">esterilizados y sellados</span> en condición prácticamente nueva</li>
+                <li>✓ Productos <span className="font-bold text-blue-900">esterilizados y sellados</span> en condición nueva</li>
                 <li>✓ Soluciones perfectas para <span className="font-bold text-blue-900">capacitación, entrenamiento y fines didácticos</span></li>
               </ul>
               <div className="text-center">
@@ -137,7 +137,7 @@ function App() {
               <div>
                 <h3 className="text-base font-black text-red-900 mb-2 uppercase tracking-tight">Importante - Productos para Uso Educativo</h3>
                 <p className="text-sm text-red-800 font-medium leading-relaxed">
-                  Estos suministros médicos son <span className="font-bold">esterilizados y sellados (estado nuevo)</span> pero tienen <span className="font-bold">fecha de vencimiento expirada</span>. Están diseñados exclusivamente para <span className="font-bold">fines educativos, de capacitación y demostración</span> en instituciones médicas. <span className="font-bold">NO</span> están autorizados para uso clínico o pacientes.
+                  Estos suministros médicos son <span className="font-bold">esterilizados y sellados (nuevos)</span> pero tienen <span className="font-bold">fecha de vencimiento expirada</span>. Están diseñados exclusivamente para <span className="font-bold">fines educativos, de capacitación y demostración</span> en instituciones médicas. <span className="font-bold">NO</span> están autorizados para uso clínico o pacientes.
                 </p>
               </div>
             </div>
